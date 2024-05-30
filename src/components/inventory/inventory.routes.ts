@@ -1,16 +1,15 @@
 import { Router } from "express";
 
-import productController from "../product/product.controller";
+import inventoryController from "../inventory/inventory.controller";
 
 const router = Router();
 
-router.get("/products", [productController.getProducts]);
+router.get("/inventory", [inventoryController.getProductsInventory]);
 
-router.get("/product/:id", [productController.getProduct]);
+router.put("/inventory", [inventoryController.removeProductInventory]);
 
-router.post("/createProduct", [productController.createProduct]);
 
-router.post("/updateProduct/:id", [productController.updateProduct]);
+// router.post("/updateProduct/:id", [productController.updateProduct]);
 
 // router.put("/cuenta/:accountId/desactivar", [
 // 	productController.postDeleteUserAccount,

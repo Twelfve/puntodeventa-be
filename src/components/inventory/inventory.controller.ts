@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import ServerConstants from "../../classes/constants";
 import asyncWrapper from "../../middleware/asyncWrapper";
-import { getAllProductsInventory, postProductInventory } from "./inventory.feature";
+import { getAllProductsInventory, postProductInventory, deleteProductInventory } from "./inventory.feature";
 import { IInventory } from "./Inventory";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -34,7 +34,36 @@ const createProductInventory = async (req: Request, res: Response) => {
 	// return res.status(OK).json(products);
 };
 
+const removeProductInventory = async (req: Request, res: Response) => {
+	console.log("req.params", req.body);
+	// console.log("req", req);
+	const id = req.body;
+	console.log("id", id);
+	
+	id.forEach(async (id: number) => {
+		try {
+			await deleteProductInventory(id);
+		} catch (error) {
+			console.log("error", error);	
+		}
+	});
+	
+	// const { id } = req.params;
+
+	// try {
+	// 	await deleteProductInventory(parseInt(id, 10));
+	// } catch (error) {
+	// 	console.log("error", error);	
+	// }
+
+	// const products = await postProduct();
+	
+	return res.status(OK);
+};
+
+
 export default {
 	getProductsInventory: asyncWrapper(getProductsInventory),
-	createProductInventory: asyncWrapper(createProductInventory)
+	createProductInventory: asyncWrapper(createProductInventory),
+	removeProductInventory: asyncWrapper(removeProductInventory)
 };

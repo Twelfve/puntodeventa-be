@@ -6,12 +6,40 @@ import { IInventory } from "./Inventory";
 import Transaction from "../../classes/transaction";
 
 export const getAllProductsInventory = async () => {
-    const { Inventory } = Database.models;
+    const { Inventory, Product } = Database.models;
     console.log("Database.models", Database.models);
     try {
         const results = await Inventory.findAll();
-        console.log(results);
-        return results;
+        const array: any[] = [];
+        for (let productInventory of results) {
+          const product = await Product.findByPk(productInventory.id_producto);
+          // console.log("product", product);
+          
+          array.push(product)
+          
+        }
+        console.log("array", array);
+        
+        // await results.forEach(async (productInventory: any) => {
+        //   const product = await Product.findByPk(productInventory.id_producto);
+        //   console.log("product", product);
+          
+        //   array.push(product)
+        // });
+        // console.log("array", array);
+        
+        // const results = await ProductIncome.findAll({
+        //   include: [
+        //     {
+        //       model: Database.models.Product,
+        //     },
+        //     {
+        //       model: Database.models.Store,
+        //     },
+        //   ],
+        // });
+        // console.log("etiq",results);
+        return array;
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -25,6 +53,13 @@ export const postProductInventory = async (productInventory: IInventory) => {
     id_tienda: productInventory.id_tienda,
     cantidad: productInventory.cantidad
   });
+	await Transaction.commit();
+};
+
+export const deleteProductInventory = async (productInventoryId: number) => {
+  const { Inventory } = Database.models;
+  await Transaction.start();
+	await Inventory.destroy({ where: { id_producto: productInventoryId } });
 	await Transaction.commit();
 };
 

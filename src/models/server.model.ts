@@ -6,6 +6,7 @@ import { environment } from "../../environments/environment";
 import { APP_NAME, APP_VERSION } from "../utils/string_ES";
 import ProductRoutes from "../components/product/product.routes";
 import StoreRoutes from "../components/store/store.routes";
+import InventoryRoutes from "../components/inventory/inventory.routes";
 import ProductIncomeRoutes from "../components/productIncome/productIncome.routes";
 import ProductOutRoutes from "../components/productOut/productOut.routes";
 import Database from "../classes/database";
@@ -35,6 +36,7 @@ class Server {
     this.app.use("/api/store", StoreRoutes);
     this.app.use("/api/productIncome", ProductIncomeRoutes);
     this.app.use("/api/productOut", ProductOutRoutes);
+    this.app.use("/api/inventory", InventoryRoutes);
   }
 
   private async registerDBConnection() {

@@ -21,17 +21,17 @@ export class Product
   public updatedAt?: Date;
   public deletedAt?: Date;
 
-  // public static associate(models: { [key: string]: any }) {
-  // 	Product.belongsTo(models.ProductIncome);
-  // 	Product.hasMany(models.Account, {
-  // 		foreignKey: "userId",
-  // 		as: "accounts",
-  // 	});
-  // 	Product.hasMany(models.Payment, {
-  // 		foreignKey: "userId",
-  // 		as: "payments",
-  // 	});
-  // }
+//   public static associate(models: { [key: string]: any }) {
+//   	// Product.belongsTo(models.Inventory);
+//   	// Product.hasMany(models.Account, {
+//   	// 	foreignKey: "userId",
+//   	// 	as: "accounts",
+//   	// });
+//   	// Product.hasMany(models.Payment, {
+//   	// 	foreignKey: "userId",
+//   	// 	as: "payments",
+//   	// });
+//   }
 }
 
 export const ProductFactory = (sequelize: Sequelize) => {
