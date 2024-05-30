@@ -48,12 +48,15 @@ export const putProductOut = async (attributes: Partial<IProductOut>) => {
       cantidad_salida: cantidad_salida,
     });
     if (cantidad_salida) {
-      await Inventory.update(
-        {
-          cantidad: inventoryArray[0].cantidad - cantidad_salida,
-        },
-        { where: { id_producto: id_producto, id_tienda: id_tienda } }
-      );
+      if (cantidad_salida < inventoryArray[0].cantidad) {
+        
+        await Inventory.update(
+          {
+            cantidad: inventoryArray[0].cantidad - cantidad_salida,
+          },
+          { where: { id_producto: id_producto, id_tienda: id_tienda } }
+        );
+      }
     }
   }
   await Transaction.commit();
