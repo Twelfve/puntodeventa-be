@@ -20,10 +20,7 @@ export class Product extends Model<IProduct, Partial<IProduct>> implements Model
 	public deletedAt?: Date;
 
 	// public static associate(models: { [key: string]: any }) {
-	// 	Product.belongsTo(models.Location, {
-	// 		foreignKey: "locationId",
-	// 		as: "location",
-	// 	});
+	// 	Product.belongsTo(models.ProductIncome);
 	// 	Product.hasMany(models.Account, {
 	// 		foreignKey: "userId",
 	// 		as: "accounts",

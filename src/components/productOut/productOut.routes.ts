@@ -1,23 +1,19 @@
 import { Router } from "express";
 
-import productController from "./product.controller";
+import productController from "./productOut.controller";
 
 const router = Router();
 
 router.get("/products", [
-	productController.getProducts,
-]);
-
-router.get("/product/:id", [
-	productController.getProduct,
+	productController.getProductOuts,
 ]);
 
 router.post("/createProduct", [
-	productController.createProduct,
+	productController.createProductOut,
 ]);
 
 router.post("/updateProduct/:id", [
-	productController.updateProduct,
+	productController.updateProductOut,
 ]);
 
 // router.put("/cuenta/:accountId/desactivar", [

@@ -3,6 +3,10 @@
 import { Sequelize } from "sequelize";
 import { environment } from "../../environments/environment";
 import { ProductFactory } from "../components/product/Product";
+import { ProductIncomeFactory } from "../components/productIncome/ProductIncome";
+import { InventoryFactory } from "../components/inventory/Inventory";
+import { StoreFactory } from "../components/store/Store";
+import { ProductOutFactory } from "../components/productOut/ProductOut";
 
 const MYSQL_PORT: any = process.env.MYSQL_PORT ? process.env.MYSQL_PORT : 3306;
 
@@ -45,6 +49,10 @@ class Database {
 	public static async initModels() {
 		this.models = {
 			Product: ProductFactory(this.instance),
+			ProductIncome: ProductIncomeFactory(this.instance),
+			ProductOut: ProductOutFactory(this.instance),
+			Inventory: InventoryFactory(this.instance),
+			Store: StoreFactory(this.instance),
 		};
 		for (const key in this.models) {
 			if (this.models[key].associate) {
