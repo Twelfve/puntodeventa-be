@@ -8,11 +8,11 @@ import { getAllStores } from "./store.feature";
 const { OK, BAD_REQUEST } = ServerConstants.HTTP_STATUS_CODES;
 
 const getStores = async (req: Request, res: Response) => {
-	const stores = await getAllStores();
-	
-	return res.status(OK).json(stores);
+  const stores = await getAllStores();
+
+  return res.status(OK).json(stores);
 };
 
 export default {
-	getStores: asyncWrapper(getStores)
+  getStores: asyncWrapper(getStores),
 };
